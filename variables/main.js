@@ -31,7 +31,7 @@ let x = 2;
 let y = 22;
 let z = 0;
 
-let result2 =x*y+5*z+x-1;
+let result2 = x * y + 5 * z + x - 1;
 
 console.log('Ответ на задачу: ' + result2);
 
