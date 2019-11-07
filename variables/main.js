@@ -18,7 +18,7 @@ console.log();
 
 let myName = 'Вася';
 
-let message = 'Привет, мир! Меня зовут ' + myName + '.';
+let message = `Привет, мир! Меня зовут ${myName}`;
 console.log(message);
 
 console.log();
