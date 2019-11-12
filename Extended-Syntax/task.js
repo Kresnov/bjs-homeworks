@@ -14,9 +14,9 @@ function getResult(a,b,c){
     let d = b**2 - 4 * a * c; 
     let result = [];
     if (d < 0) {
-        result = [ ];
+        console.log('Корней нет');
     } else if (d == 0) {
-        result = [-b / ( 2 * a )];
+        result[0] = -b / ( 2 * a );
     } else {
         result[0] = -b / ( 2 * a ) + Math.sqrt( d ) / ( 2 * a );
         result[1] = -b / ( 2 * a ) - Math.sqrt( d ) / ( 2 * a );
@@ -39,11 +39,10 @@ function getAverageMark(marks){
     let sum = 0;
       
     for (let i=0; i < marks.length; i++) {
-        sum = sum + marks[i];
+        sum += marks[i];
     }
   
-    let averageMark = sum / marks.length;
-    return averageMark;
+    return sum / marks.length;
   
 }
 
