@@ -14,12 +14,12 @@ function getResult(a,b,c){
     let d = b**2 - 4 * a * c; 
     let result = [];
     if (d < 0) {
-        console.log('Корней нет');
-    } else if (d == 0) {
-        result[0] = -b / ( 2 * a );
+        return result;
+    } else if (d === 0) {
+        result.push(-b / ( 2 * a ));
     } else {
-        result[0] = -b / ( 2 * a ) + Math.sqrt( d ) / ( 2 * a );
-        result[1] = -b / ( 2 * a ) - Math.sqrt( d ) / ( 2 * a );
+        result.push(-b / ( 2 * a ) + Math.sqrt( d ) / ( 2 * a ));
+        result.push(-b / ( 2 * a ) - Math.sqrt( d ) / ( 2 * a ));
     }
     return result;
 }
