@@ -17,18 +17,21 @@ function calculateTotalMortgage(percent, contribution, amount, date) {
     amount = Number(amount);
     if (isNaN(percent)) {
       console.log(`Не числовое значение`);
+      return;
     }
     if (isNaN(contribution)) {
         console.log(`Не числовое значение`);
+        return;
     }
     if (isNaN(amount)) {
         console.log(`Не числовое значение`);
+        return;
     }
 
     let nowYear = new Date().getFullYear();
     let nowMonth = new Date().getMonth() + 1;
-    let creditYear = date.getFullYear();
-    let creditMonth = date.getMonth() + 1;
+    let creditYear = new Date(date).getFullYear();
+    let creditMonth = new Date(date).getMonth() + 1;
     let amountMonths = (creditYear - nowYear) * 12 + (creditMonth - nowMonth);
 
 
@@ -49,7 +52,7 @@ function sayHello() {
 }
 
 function getGreeting(name) {
-    if (name == false) {
+    if (name === false) {
         name = 'Аноним';
     }
       
