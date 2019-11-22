@@ -3,12 +3,14 @@
 // задача 1
 
 class Weapon {
-	constructor(name, attack, durability, range) {
+	constructor(name, attack, durability, range, critChance, critDamage) {
 		this.name = name;
 		this.attack = attack;
 		this.firstDurability = durability;
 		this.durability = durability;
 		this.range = range;
+		this.critChance = critChance;
+		this.critDamage = critDamage;
 	}
 
 	// повреждение от соперника
@@ -19,15 +21,29 @@ class Weapon {
 		}
 	}
 
+	// вероятность крита
+
+	getCrit() {
+		// рандомизатор
+		let getRandom = Math.round(Math.random() * Math.round(100));
+
+		if (getRandom <= this.critChance){
+     		this.critDamage = this.critDamage / 100;
+		} else {
+			this.critDamage = 0;
+		}
+		return this.critDamage
+	}
+
 	// урон от удара данным оружием
 	getDamage() {
 		this.attackEnemy = 0;
 		if (this.durability >= this.firstDurability * 0.3) {
-			this.attackEnemy = this.attack;
+			this.attackEnemy = this.attack + this.critDamage;
 		} else if (this.durability === 0) {
 			this.attackEnemy = 0;
 		} else {
-			this.attackEnemy = this.attack / 2;
+			this.attackEnemy = (this.attack  + this.critDamage) / 2;
 		}
 		return this.attackEnemy
 	}
@@ -43,29 +59,32 @@ class Weapon {
 }
 
 // обычное оружие
-const arm = new Weapon("Рука", 1, Infinity, 1);
-const bow = new Weapon("Лук", 10, 200, 3);
-const sword = new Weapon("Меч", 25, 500, 1);
-const knife = new Weapon("Нож", 5, 300, 1);
-const staff = new Weapon("Посох", 8, 300, 2);
+const arm = new Weapon("Рука", 1, Infinity, 1, 50, 50);
+const bow = new Weapon("Лук", 10, 200, 3, 10, 80);
+const sword = new Weapon("Меч", 25, 500, 1, 25, 25);
+const knife = new Weapon("Нож", 5, 300, 1, 5, 50);
+const staff = new Weapon("Посох", 8, 300, 2, 50, 10);
 
 // усиленное оружие
 
-const longBow = new Weapon("Длинный лук", 15, 200, 4);
-const ax = new Weapon("Секира", 27, 800, 1);
-const staffOfStorm = new Weapon("Посох Бури", 10, 300, 3);
+const longBow = new Weapon("Длинный лук", 15, 200, 4, 25, 80);
+const ax = new Weapon("Секира", 27, 800, 1, 80, 50);
+const staffOfStorm = new Weapon("Посох Бури", 10, 300, 3,5, 100);
 
 arm.takeDamage(50);
 console.log(`arm.takeDamage(50) ${arm.durability}`); 
+console.log(`arm.getCrit() ${arm.getCrit()}`);
 console.log(`arm.getDamage() ${arm.getDamage()}`); 
 console.log(`arm.isBroken() ${arm.isBroken()}`); 
 
 bow.takeDamage(50);
 console.log(`bow.takeDamage(20) ${bow.durability}`); 
+console.log(`bow.getCrit() ${bow.getCrit()}`);
 console.log(`bow.getDamage() ${bow.getDamage()}`); 
 
 bow.takeDamage(500);
-console.log(`bow.takeDamage(200) ${bow.durability}`); 
+console.log(`bow.takeDamage(200) ${bow.durability}`);
+console.log(`bow.getCrit() ${bow.getCrit()}`); 
 console.log(`bow.getDamage() ${bow.getDamage()}`); 
 
 // задача 2
@@ -79,6 +98,8 @@ class Arm extends Weapon {
 		this.firstDurability = Infinity;
 		this.durability = Infinity;
 		this.range = 1;
+  		this.critChance = 50;
+		this.critDamage = 50;
 	}
 }
 
@@ -90,6 +111,8 @@ class Bow extends Weapon {
 		this.firstDurability = 200;
 		this.durability = 200;
 		this.range = 3;
+   		this.critChance = 10;
+		this.critDamage = 80;
 	}
 }
 
@@ -101,6 +124,8 @@ class Sword extends Weapon {
 		this.firstDurability = 500;
 		this.durability = 500;
 		this.range = 1;
+		this.critChance = 25;
+		this.critDamage = 25;
 	}
 }
 
@@ -112,6 +137,8 @@ class Knife extends Weapon {
 		this.firstDurability = 300;
 		this.durability = 300;
 		this.range = 1;
+		this.critChance = 5;
+		this.critDamage = 50;
 	}
 }
 
@@ -123,6 +150,8 @@ class Staff extends Weapon {
 		this.firstDurability = 300;
 		this.durability = 300;
 		this.range = 2;
+		this.critChance = 50;
+		this.critDamage = 10;
 	}
 }
 
@@ -168,12 +197,9 @@ const staffOfStorm1 = new StaffOfStorm();
 
 arm1.takeDamage(50);
 console.log(`arm1.takeDamage(50) ${arm1.durability}`); 
+console.log(`arm1.getCrit() ${arm1.getCrit()}`);
 console.log(`arm1.getDamage() ${arm1.getDamage()}`); 
 console.log(`arm1.isBroken() ${arm1.isBroken()}`); 
-
-console.log(longbow1);
-console.log(ax1);
-console.log(staffOfStorm1);
 
 // 3 задача
 
