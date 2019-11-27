@@ -28,7 +28,7 @@ class Weapon {
 		let getRandom = Math.round(Math.random() * Math.round(100));
 
 		if (getRandom <= this.critChance){
-     		this.critDamage = this.critDamage / 100;
+     		this.critDamage = this.attack * this.critDamage / 100;
 		} else {
 			this.critDamage = 0;
 		}
@@ -78,12 +78,12 @@ console.log(`arm.getDamage() ${arm.getDamage()}`);
 console.log(`arm.isBroken() ${arm.isBroken()}`); 
 
 bow.takeDamage(50);
-console.log(`bow.takeDamage(20) ${bow.durability}`); 
+console.log(`bow.takeDamage(50) ${bow.durability}`); 
 console.log(`bow.getCrit() ${bow.getCrit()}`);
 console.log(`bow.getDamage() ${bow.getDamage()}`); 
 
 bow.takeDamage(500);
-console.log(`bow.takeDamage(200) ${bow.durability}`);
+console.log(`bow.takeDamage(500) ${bow.durability}`);
 console.log(`bow.getCrit() ${bow.getCrit()}`); 
 console.log(`bow.getDamage() ${bow.getDamage()}`); 
 
